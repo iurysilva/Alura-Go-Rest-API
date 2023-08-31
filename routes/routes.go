@@ -4,10 +4,12 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/iurysilva/Alura-Go-Rest-API/controllers"
 )
 
 func HandleRequest() {
-	http.HandleFunc("/", controllers.Home)
-	log.Fatal(http.ListenAndServe(":8000", nil))
+	gorillaMux := mux.NewRouter()
+	gorillaMux.HandleFunc("/", controllers.Home)
+	log.Fatal(http.ListenAndServe(":8000", gorillaMux))
 }
