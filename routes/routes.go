@@ -14,5 +14,7 @@ func HandleRequest() {
 	gorillaMux.HandleFunc("/personalities", controllers.GetAllPersonalities).Methods("Get")
 	gorillaMux.HandleFunc("/personalities/{id}", controllers.GetOnePersonality).Methods("Get")
 	gorillaMux.HandleFunc("/personalities", controllers.CreateNewPersonality).Methods("Post")
+	gorillaMux.HandleFunc("/personalities/{id}", controllers.DeletePersonality).Methods("Delete")
+	gorillaMux.HandleFunc("/personalities/{id}", controllers.EditPersonality).Methods("Put")
 	log.Fatal(http.ListenAndServe(":8000", gorillaMux))
 }

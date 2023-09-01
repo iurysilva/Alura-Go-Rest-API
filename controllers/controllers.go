@@ -34,3 +34,21 @@ func CreateNewPersonality(responseWriter http.ResponseWriter, request *http.Requ
 	database.DB.Create(&personality)
 	json.NewEncoder(responseWriter).Encode(personality)
 }
+
+func DeletePersonality(responseWriter http.ResponseWriter, request *http.Request) {
+	vars := mux.Vars(request)
+	id := vars["id"]
+	var personality models.Personality
+	database.DB.Delete(&personality, "id = ?", id)
+	json.NewEncoder(responseWriter).Encode(personality)
+}
+
+func EditPersonality(responseWriter http.ResponseWriter, request *http.Request) {
+	vars := mux.Vars(request)
+	id := vars["id"]
+	var personality models.Personality
+	database.DB.First(&personality, "id = ?", id)
+	json.NewDecoder(request.Body).Decode(&personality)
+	database.DB.Save(&personality)
+	json.NewEncoder(responseWriter).Encode(personality)
+}
