@@ -14,7 +14,7 @@ services:
 
   pgadmin-compose:
     image: dpage/pgadmin4
-    container_name: pagmin-alura-go-rest-api
+    container_name: pagadmin-alura-go-rest-api
     environment:
       PGADMIN_DEFAULT_EMAIL: "user@email.com"
       PGADMIN_DEFAULT_PASSWORD: "123456"
