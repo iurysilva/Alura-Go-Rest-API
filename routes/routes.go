@@ -6,10 +6,12 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/iurysilva/Alura-Go-Rest-API/controllers"
+	"github.com/iurysilva/Alura-Go-Rest-API/middleware"
 )
 
 func HandleRequest() {
 	gorillaMux := mux.NewRouter()
+	gorillaMux.Use(middleware.ContentTypeMiddleware)
 	gorillaMux.HandleFunc("/", controllers.Home)
 	gorillaMux.HandleFunc("/personalities", controllers.GetAllPersonalities).Methods("Get")
 	gorillaMux.HandleFunc("/personalities/{id}", controllers.GetOnePersonality).Methods("Get")
