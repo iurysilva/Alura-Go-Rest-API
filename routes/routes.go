@@ -11,7 +11,8 @@ import (
 func HandleRequest() {
 	gorillaMux := mux.NewRouter()
 	gorillaMux.HandleFunc("/", controllers.Home)
-	gorillaMux.HandleFunc("/getAllPersonalities", controllers.GetAllPersonalities)
-	gorillaMux.HandleFunc("/getOnePersonality/{id}", controllers.GetOnePersonality)
+	gorillaMux.HandleFunc("/personalities", controllers.GetAllPersonalities).Methods("Get")
+	gorillaMux.HandleFunc("/personalities/{id}", controllers.GetOnePersonality).Methods("Get")
+	gorillaMux.HandleFunc("/personalities", controllers.CreateNewPersonality).Methods("Post")
 	log.Fatal(http.ListenAndServe(":8000", gorillaMux))
 }
